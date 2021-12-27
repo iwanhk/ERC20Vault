@@ -1,0 +1,46 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    - SafeMath
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@4.4.1
+compiler:
+  solc:
+    remappings:
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.4.1'
+dotenv: .env
+networks:
+        # any settings given here will replace the defaults
+        development:
+            host: http://0.0.0.0
+            gas_price: 0
+            persist: true
+            reverting_tx_gas_limit: 67219750
+            cmd_settings:
+              port: 8545
+              gas_limit: 67219750
+              accounts: 10
+        # set your Infura API token to the environment variable ${WEB3_INFURA_PROJECT_ID}
+        mainnet:
+            host: https://mainnet.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+        goerli:
+            host: https://goerli.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+        kovan:
+            host: https://kovan.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+        rinkeby:
+            host: https://rinkeby.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+            priority_fee: 50
+            max_fee: 500
+        bsc-test:
+            gas_limit: 67219750
+        ropsten:
+            host: https://ropsten.infura.io/v3/${WEB3_INFURA_PROJECT_ID}
+        classic:
+            host: https://www.ethercluster.com/etc
+        kotti:
+            host: https://www.ethercluster.com/kotti
+wallets:
+  admin: ${ADMIN_PRIVATE_KEY}
+  creator: ${CREATOR_PRIVATE_KEY}
+  consumer: ${CONSUMER_PRIVATE_KEY}
